@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiEndPoint = 'http://universities.hipolabs.com/search?country=Australia'
+const apiEndPoint = 'https://universities.hipolabs.com/search?country=Australia'
 export const fetchDataFromApi = () => {
     try {
         return axios.get(apiEndPoint).then(res => res.data)
