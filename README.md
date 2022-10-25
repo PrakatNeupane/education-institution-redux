@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project is a react application where state management is done via redux. The UI package used is react bootsrap and bootstrap. In order to fetch data from the api, axios is used.
 
-## Available Scripts
+## Running the project locally
 
-In the project directory, you can run:
+1. Clone or download the project into your local directory
+2. Download node (skip if you already have one. to check just type `node` in the command line and it should show the version)
+3. Run `npm install` to setup the node package manager in the project and get node modules
+4. Some other packages that you might want to install are axios, bootstrap, react-bootstrap
+5. Run `npm start` and the project should run in your localhost
 
-### `npm start`
+## Development process
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Fetching the api
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Axios has been used for the simplicity of it. In the file `axiosHelper.js`, the api `http://universities.hipolabs.com/search?country=Australia` is called by `axios.get` method.
 
-### `npm test`
+### Setting up the redux store
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The initial state in the slice file is as follows
+`const initialState = { isLoading: false, dataFromApi: [], dataToDisplay: [], }`
 
-### `npm run build`
+Basically, `isLoading` property would store information needed so that when the data is being fetched, a spinner can be displayed and as soon as the data is displayed, the spinner disappears.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`dataFromApi` and `dataToDisplay` store fetched information in form of an array in the global store to display in the table.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Implementing delete and add function
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In order to implement delete function while clicking the delete button, the last element from `dataFromApi` is deleted by using `.pop()` method and the remaining elements are displayed.
 
-### `npm run eject`
+In order to implement add function, the first element from the array is pushed back in to the same array. This assures that the first item gets inserted to the last without losing that first item itself.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Further enhancements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In availability of sufficient time, unit testing could have been done for individual components, functions, and data fetching by using JEST.
